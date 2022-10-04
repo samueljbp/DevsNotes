@@ -1,34 +1,30 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-    list: {
-        title: 'Primeira Nota',
-        body: 'Testando 1,2,3...',
-    },
+    list: [
+        {
+            title: 'Primeira Nota',
+            body: 'Testando 1,2,3...',
+        },
+    ],
 };
 
 export const notesSlice = createSlice({
     name: 'notes',
-    initialState,
+    initialState: initialState,
     reducers: {
-        adicionar: state => {
-            state.list.push({
-                title: 'Segunda Nota',
-                body: 'Testando 1,2,3...',
-            });
+        adicionar: (state, action) => {
+            state.list.push(action.payload);
+        },
+        alterar: (state, action) => {
+            if (state.list[payload.index]) {
+                state.list[payload.index].title = payload.title;
+                state.list[payload.index].body = payload.body;
+            }
         },
     },
 });
 
-export const {notes} = notesSlice.actions;
-
-// export const notesSlice = (state = initialState, action) => {
-//     switch (action.type) {
-//         case 'ADD_NOTE':
-//             break;
-//     }
-
-//     return state;
-// };
+export const {adicionar, alterar} = notesSlice.actions;
 
 export default notesSlice.reducer;
