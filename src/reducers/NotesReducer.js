@@ -17,14 +17,19 @@ export const notesSlice = createSlice({
             state.list.push(action.payload);
         },
         alterar: (state, action) => {
-            if (state.list[payload.index]) {
-                state.list[payload.index].title = payload.title;
-                state.list[payload.index].body = payload.body;
+            if (state.list[action.payload.index]) {
+                state.list[action.payload.index].title = action.payload.title;
+                state.list[action.payload.index].body = action.payload.body;
+            }
+        },
+        excluir: (state, action) => {
+            if (state.list[action.payload.index]) {
+                state.list.splice(action.payload.index, 1);
             }
         },
     },
 });
 
-export const {adicionar, alterar} = notesSlice.actions;
+export const {adicionar, alterar, excluir} = notesSlice.actions;
 
 export default notesSlice.reducer;

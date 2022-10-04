@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
     height: 100%;
     width: 100%;
     flex: 1;
@@ -37,4 +37,16 @@ export const CloseButton = styled.TouchableHighlight`
 export const CloseButtonImage = styled.Image`
     width: 20px;
     height: 20px;
+`;
+
+export const DeleteButton = styled.TouchableHighlight`
+    height: 40px;
+    background-color: '#FF3333';
+    justify-content: center;
+    align-items: center;
+`;
+
+export const DeleteButtonText = styled.Text`
+    font-size: 14px;
+    color: '#FFF';
 `;

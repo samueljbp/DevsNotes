@@ -8,9 +8,11 @@ import {
     SaveButtonImage,
     CloseButton,
     CloseButtonImage,
+    DeleteButton,
+    DeleteButtonText,
 } from './styles';
 import {useRoute, useNavigation} from '@react-navigation/native';
-import {adicionar, alterar} from '../../reducers/NotesReducer';
+import {adicionar, alterar, excluir} from '../../reducers/NotesReducer';
 
 export default () => {
     const [title, setTitle] = useState('');
@@ -75,11 +77,22 @@ export default () => {
                     body: body,
                 }),
             );
-            navigation.goBack();
         }
+
+        navigation.goBack();
     };
 
     const handleCloseButton = () => {
+        navigation.goBack();
+    };
+
+    const handleDeleteButtonPress = () => {
+        dispatch(
+            excluir({
+                index: route.params.key,
+            }),
+        );
+
         navigation.goBack();
     };
 
@@ -102,6 +115,15 @@ export default () => {
                 onChangeText={t => setBody(t)}
                 style={{color: '#FFF'}}
             />
+            {status == 'edit' && (
+                <DeleteButton
+                    onPress={handleDeleteButtonPress}
+                    style={{backgroundColor: '#FF3333'}}>
+                    <DeleteButtonText style={{color: '#FFF'}}>
+                        Excluir anotação
+                    </DeleteButtonText>
+                </DeleteButton>
+            )}
         </Container>
     );
 };

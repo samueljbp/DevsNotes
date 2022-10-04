@@ -15,6 +15,7 @@ import NoteItem from '../../components/NoteItem/index';
 export default () => {
     const navigation = useNavigation();
     const {list} = useSelector(state => state.notes);
+    console.log(list);
     //const list = [];
 
     useLayoutEffect(() => {
